@@ -40,3 +40,52 @@ int main() {
 
     return 0;
 }
+
+# Activities 
+
+### 2.
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string studentName;
+    int examMarks, attendancePercentage;
+    string scholarshipStatus;
+
+    cout << "Enter student name: ";
+    cin.ignore();
+    getline(cin, studentName);
+    
+    cout << "Enter exam marks (0-100): ";
+    cin >> examMarks;
+    
+    cout << "Enter attendance percentage (0-100): ";
+    cin >> attendancePercentage;
+
+    if (examMarks >= 70) {
+        if (attendancePercentage >= 80) scholarshipStatus = "Full Scholarship";
+        else scholarshipStatus = "Partial Scholarship";
+    } 
+    else if (examMarks >= 50 && examMarks <= 69) {
+        if (attendancePercentage >= 85) scholarshipStatus = "Partial Scholarship";
+        else scholarshipStatus = "No Scholarship";
+    } 
+    else {
+        scholarshipStatus = "No Scholarship";
+    }
+
+    cout << "\n--- Scholarship Results ---\n";
+    cout << "Student Name: " << studentName << "\nStatus: " << scholarshipStatus << endl;
+
+    return 0;
+}
+
+
+
+
+
+
