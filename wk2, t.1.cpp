@@ -1,4 +1,4 @@
-//Nickson Basweti
+//Lawrence Onyoni 
 //WEEK 2: Task1: Grading System
 
 #include <iostream>
