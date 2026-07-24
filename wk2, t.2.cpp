@@ -1,4 +1,4 @@
-//Nickson Basweti
+//Lawrence Onyoni 
 //Task 2: Admission Decision (Nested if)  
 
 #include <iostream>
