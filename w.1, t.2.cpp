@@ -1,4 +1,4 @@
-//Nickson Basweti
+//Lawrence Onyoni 
 //Task 2: Driving Test Result Evaluation System
 
 #include <iostream>
