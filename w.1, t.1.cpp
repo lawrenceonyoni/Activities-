@@ -1,4 +1,4 @@
-//Nickson Basweti
+//Lawrence Onyoni 
 //TASK 1: Mobile Phone Sales Receipt system
 #include <iostream>
 #include <cstring>
