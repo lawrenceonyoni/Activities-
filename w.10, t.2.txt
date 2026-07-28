@@ -1,0 +1,67 @@
+#include <iostream>
+
+using namespace std;
+
+// i) Create a base class named Shape with a virtual function
+class Shape {
+public:
+    // virtual keyword enables runtime dynamic binding
+    virtual void draw() {
+        cout << "Drawing a generic shape" << endl;
+    }
+    
+    // Virtual destructor ensuring correct deletion of derived elements
+    virtual ~Shape() {} 
+};
+
+// ii) Create derived classes that override the draw() function
+class Circle : public Shape {
+public:
+    // iii) Override draw() to display specific message
+    void draw() override {
+        cout << "Drawing Circle" << endl;
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Rectangle" << endl;
+    }
+};
+
+class Triangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Triangle" << endl;
+    }
+};
+
+// iv) Main function
+int main() {
+    cout << "=== Run-time Polymorphism: Shape Drawing System ===" << endl << endl;
+
+    // iv) Create a base class pointer
+    Shape* shapePtr = nullptr;
+
+    // Instantiate derived objects
+    Circle myCircle;
+    Rectangle myRectangle;
+    Triangle myTriangle;
+
+    // v) Demonstrate runtime polymorphism using the same base pointer
+    
+    // Point to Circle object
+    shapePtr = &myCircle;
+    shapePtr->draw(); // Outputs: Drawing Circle
+
+    // Point to Rectangle object
+    shapePtr = &myRectangle;
+    shapePtr->draw(); // Outputs: Drawing Rectangle
+
+    // Point to Triangle object
+    shapePtr = &myTriangle;
+    shapePtr->draw(); // Outputs: Drawing Triangle
+
+    return 0;
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // i. Declare variables for employee details
+    string name;
+    double basicSalary;
+    double bonus;
+    double totalSalary;
+
+    cout << "=== Employee Bonus Calculation System ===" << endl << endl;
+
+    // ii. For loop to input details for exactly 5 employees
+    for (int i = 1; i <= 5; i++) {
+        cout << "----- Employee " << i << " -----" << endl;
+        
+        cout << "Enter Employee Name: ";
+        // Use cin >> ws to clear any leftover whitespace from the input buffer
+        cin >> ws; 
+        getline(cin, name);
+        
+        cout << "Enter Basic Salary: ";
+        cin >> basicSalary;
+
+        // iii. Calculate bonus (5% of basic salary)
+        bonus = 0.05 * basicSalary;
+
+        // iv. Calculate total salary
+        totalSalary = basicSalary + bonus;
+
+        // v. Display a report for the employee
+        cout << "\n--- Salary Report ---" << endl;
+        cout << "Name:         " << name << endl;
+        cout << "Basic Salary: " << basicSalary << endl;
+        cout << "Bonus (5%):   " << bonus << endl;
+        cout << "Total Salary: " << totalSalary << endl;
+        cout << "---------------------\n" << endl;
+    }
+
+    cout << "Processing complete for all 5 employees." << endl;
+    return 0;
+}
+

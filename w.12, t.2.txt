@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+// i) Create an abstract class named Shape
+class Shape {
+public:
+    // A pure virtual function
+    virtual void calculateArea() = 0;
+
+    // Virtual destructor
+    virtual ~Shape() {}
+};
+
+// ii) Create derived class: Circle
+class Circle : public Shape {
+private:
+    double radius;
+    const double PI = 3.14159265359;
+
+public:
+    Circle(double r) {
+        radius = r;
+    }
+
+    // iii) Implement calculateArea() using: Area = PI * r^2
+    void calculateArea() override {
+        double area = PI * radius * radius;
+        cout << "Shape: Circle    | Radius: " << radius << " | Calculated Area: " << area << endl;
+    }
+};
+
+// ii) Create derived class: Rectangle
+class Rectangle : public Shape {
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double l, double w) {
+        length = l;
+        width = w;
+    }
+
+    // iii) Implement calculateArea() using: Area = Length * Width
+    void calculateArea() override {
+        double area = length * width;
+        cout << "Shape: Rectangle | L: " << length << " & W: " << width << " | Calculated Area: " << area << endl;
+    }
+};
+
+// iv) In the main function
+int main() {
+    cout << "=== Graphics Engine Shape Area System ===" << endl << endl;
+
+    // Use a base class pointer
+    Shape* shapePtr = nullptr;
+
+    // Create objects of each shape
+    Circle circleObj(7.0);
+    Rectangle rectObj(10.0, 5.5);
+
+    // v) Call calculateArea() for each object via base pointer redirection
+    shapePtr = &circleObj;
+    shapePtr->calculateArea();
+
+    shapePtr = &rectObj;
+    shapePtr->calculateArea();
+
+    return 0;
+}

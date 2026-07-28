@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    // i. Declares variables to store account balance and withdrawal amount
+    double balance;
+    double withdrawalAmount;
+
+    cout << "=== Mobile Money Withdrawal System ===" << endl;
+    cout << "Enter initial account balance: ";
+    cin >> balance;
+
+    // ii. Uses a while loop to allow repeated withdrawals
+    while (balance > 0) {
+        cout << "\nEnter amount to withdraw: ";
+        cin >> withdrawalAmount;
+
+        // iv. The loop should stop when the withdrawal amount is greater than the balance
+        if (withdrawalAmount > balance) {
+            cout << "Withdrawal amount exceeds your current balance. Exiting system." << endl;
+            break; 
+        }
+
+        // iii. Deducts the amount from the balance
+        balance -= withdrawalAmount;
+
+        // iii. Displays the remaining balance
+        cout << "Withdrawal successful!" << endl;
+        cout << "Remaining Balance: " << balance << endl;
+
+        // iv. The loop should stop when the balance becomes zero
+        if (balance == 0) {
+            cout << "Your balance has reached zero. Exiting system." << endl;
+            break;
+        }
+    }
+
+    return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // Open the text file in append mode (ios::app) so old records are not deleted
+    ofstream outputFile("borrowed_books.txt", ios::app);
+    
+    if (!outputFile) {
+        cerr << "Error: Could not open or create borrowed_books.txt" << endl;
+        return 1;
+    }
+    
+    string bookTitle;
+    cout << "=== Local Library Borrowing Registry ===" << endl;
+    cout << "Enter the title of the borrowed book: ";
+    cin >> ws; // Clear trailing whitespace buffer
+    getline(cin, bookTitle);
+    
+    // Write title to the file followed by a new line
+    outputFile << bookTitle << endl;
+    
+    // ii. Display a confirmation message once successfully stored
+    cout << "Success: \"" << bookTitle << "\" has been saved to borrowed_books.txt." << endl;
+    
+    outputFile.close(); // Clean up resource
+    return 0;
+}

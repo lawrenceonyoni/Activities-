@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a class named Book
+class Book {
+private:
+    // Attributes
+    string title;
+    string author;
+    int copiesAvailable;
+
+public:
+    // ii) Member functions
+    
+    // Input book details
+    void inputDetails() {
+        cout << "Enter Book Title: ";
+        cin >> ws; // Clear input buffer
+        getline(cin, title);
+        
+        cout << "Enter Author Name: ";
+        getline(cin, author);
+        
+        cout << "Enter Number of Copies Available: ";
+        cin >> copiesAvailable;
+    }
+
+    // Reduce the number of available copies when a book is borrowed
+    void borrowBook() {
+        if (copiesAvailable > 0) {
+            copiesAvailable--;
+            cout << "\nSuccess: One copy of \"" << title << "\" has been borrowed." << endl;
+        } else {
+            cout << "\nError: Sorry, no copies of \"" << title << "\" are currently available." << endl;
+        }
+    }
+
+    // Display book information
+    void displayDetails() {
+        cout << "\n--- Book Information ---" << endl;
+        cout << "Title:            " << title << endl;
+        cout << "Author:           " << author << endl;
+        cout << "Copies Available: " << copiesAvailable << endl;
+        cout << "------------------------" << endl;
+    }
+};
+
+// iii) Main function to demonstrate operations
+int main() {
+    cout << "=== Library Book Management System ===" << endl;
+    
+    // Create an object of the class
+    Book myBook;
+
+    // Input of book details
+    cout << "Step 1: Input Book Details" << endl;
+    myBook.inputDetails();
+
+    // Display details before borrowing
+    myBook.displayDetails();
+
+    // Borrowing a book
+    cout << "\nStep 2: Simulating Book Borrowing..." << endl;
+    myBook.borrowBook();
+
+    // Displaying updated book details
+    cout << "\nStep 3: Displaying Updated Details" << endl;
+    myBook.displayDetails();
+
+    return 0;
+}

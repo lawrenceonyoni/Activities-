@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a class named BankAccount
+class BankAccount {
+private:
+    // Attributes
+    string accountHolderName;
+    string accountNumber;
+    double accountBalance;
+
+public:
+    // ii) Implement a constructor
+    BankAccount(string name, string accNum, double initialBalance) {
+        accountHolderName = name;
+        accountNumber = accNum;
+        accountBalance = initialBalance;
+        cout << "Account successfully created" << endl;
+    }
+
+    // iii) Include a member function to display account details
+    void displayAccount() {
+        cout << "\n--- Bank Account Details ---" << endl;
+        cout << "Holder Name:     " << accountHolderName << endl;
+        cout << "Account Number:  " << accountNumber << endl;
+        cout << "Account Balance: KSh " << accountBalance << endl;
+        cout << "----------------------------" << endl;
+    }
+
+    // iv) Implement a destructor
+    ~BankAccount() {
+        cout << "Account closed successfully" << endl;
+    }
+};
+
+// v) Main function
+int main() {
+    cout << "=== Bank Account Management ===" << endl;
+    
+    // Create an object of the class (triggers constructor)
+    BankAccount myAccount("John Doe", "BK-99201", 15500.50);
+
+    // Display account details
+    myAccount.displayAccount();
+
+    cout << "\nEnding main function execution..." << endl;
+    // Object goes out of scope here (triggers destructor automatically)
+    return 0;
+}

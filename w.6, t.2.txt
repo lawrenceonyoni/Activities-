@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a class named Student
+class Student {
+private:
+    // Attributes
+    string studentName;
+    string admissionNumber;
+    double feeBalance;
+
+public:
+    // ii) Member functions
+    
+    // Input student details
+    void inputStudent() {
+        cout << "Enter Student Name: ";
+        cin >> ws; // Clear input buffer
+        getline(cin, studentName);
+        
+        cout << "Enter Admission Number: ";
+        cin >> admissionNumber;
+        
+        cout << "Enter Current Fee Balance: ";
+        cin >> feeBalance;
+    }
+
+    // Reduce fee balance when a payment is made
+    void makePayment(double amount) {
+        if (amount > 0) {
+            if (amount <= feeBalance) {
+                feeBalance -= amount;
+                cout << "\nPayment of " << amount << " successfully processed." << endl;
+            } else {
+                // If payment exceeds balance, adjust balance to zero and calculate change
+                double change = amount - feeBalance;
+                feeBalance = 0;
+                cout << "\nPayment successful! Account fully cleared. Change due: " << change << endl;
+            }
+        } else {
+            cout << "\nError: Invalid payment amount entered." << endl;
+        }
+    }
+
+    // Display student details and remaining balance
+    void displayStatus() {
+        cout << "\n--- Student Fee Status ---" << endl;
+        cout << "Student Name:     " << studentName << endl;
+        cout << "Admission Number: " << admissionNumber << endl;
+        cout << "Remaining Balance: " << feeBalance << endl;
+        cout << "--------------------------" << endl;
+    }
+};
+
+// iii) Main function to demonstrate operations
+int main() {
+    cout << "=== Student Fee Management System ===" << endl;
+    
+    // Create an object of the class
+    Student currentStudent;
+    double paymentAmount;
+
+    // Allow the user to input student details
+    cout << "Step 1: Input Student Details" << endl;
+    currentStudent.inputStudent();
+
+    // Display initial fee statement
+    currentStudent.displayStatus();
+
+    // Process a fee payment
+    cout << "\nEnter payment amount to process: ";
+    cin >> paymentAmount;
+    currentStudent.makePayment(paymentAmount);
+
+    // Display updated fee status
+    cout << "\nStep 3: Displaying Updated Status" << endl;
+    currentStudent.displayStatus();
+
+    return 0;
+}

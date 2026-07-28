@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a class named RoomBooking
+class RoomBooking {
+private:
+    // Attributes
+    string guestName;
+    int roomNumber;
+    int daysBooked;
+
+public:
+    // ii) Implement a constructor
+    RoomBooking(string name, int roomNum, int days) {
+        guestName = name;
+        roomNumber = roomNum;
+        daysBooked = days;
+        cout << "Room booking confirmed" << endl;
+    }
+
+    // iii) Include a member function to show booking details
+    void displayBooking() {
+        cout << "\n--- Hotel Booking Summary ---" << endl;
+        cout << "Guest Name:        " << guestName << endl;
+        cout << "Room Number:       " << roomNumber << endl;
+        cout << "Duration of Stay:  " << daysBooked << " days" << endl;
+        cout << "-----------------------------" << endl;
+    }
+
+    // iv) Implement a destructor
+    ~RoomBooking() {
+        cout << "Booking ended, room released" << endl;
+    }
+};
+
+// v) Main function
+int main() {
+    cout << "=== Hotel Room Booking Management ===" << endl;
+    
+    // Create an object of the class (triggers constructor)
+    RoomBooking currentBooking("Jane Smith", 304, 5);
+
+    // Display booking details
+    currentBooking.displayBooking();
+
+    cout << "\nEnding main function execution..." << endl;
+    // Object goes out of scope here (triggers destructor automatically)
+    return 0;
+}

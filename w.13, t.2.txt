@@ -1,0 +1,36 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+// i. Define a fixed-size structure to hold the student information safely for binary operations
+struct StudentResult {
+    char name[50];       // Fixed char array instead of dynamic std::string for binary sizing
+    char regNumber[20];
+    double totalMarks;
+};
+
+int main() {
+    // Open the file explicitly as a binary input stream (ios::binary)
+    ifstream binaryFile("results.dat", ios::binary);
+    
+    if (!binaryFile) {
+        cerr << "Error: Could not open results.dat. Make sure the file exists." << endl;
+        return 1;
+    }
+    
+    StudentResult student;
+    cout << "=== University Exam Results Board ===" << endl << endl;
+    cout << "------------------------------------------" << endl;
+    cout << "Name\t\t\t\tMarks" << endl;
+    cout << "------------------------------------------" << endl;
+    
+    // ii & iii. Read all records sequentially and display name and marks
+    while (binaryFile.read(reinterpret_cast<char*>(&student), sizeof(StudentResult))) {
+        cout << student.name << "\t\t\t" << student.totalMarks << endl;
+    }
+    
+    cout << "------------------------------------------" << endl;
+    binaryFile.close();
+    return 0;
+}

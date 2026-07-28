@@ -1,0 +1,83 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a class named Student
+class Student {
+private:
+    // Private data members to prevent direct modification
+    string studentName;
+    string admissionNumber;
+    double feeBalance;
+
+public:
+    // ii) Public member functions
+    
+    // Input student details
+    void inputStudentData() {
+        cout << "Enter Student Name: ";
+        cin >> ws; // Clear buffer
+        getline(cin, studentName);
+        
+        cout << "Enter Admission Number: ";
+        cin >> admissionNumber;
+        
+        cout << "Enter Initial Fee Balance: ";
+        cin >> feeBalance;
+    }
+
+    // Reduce the fee balance when a payment is made
+    void makePayment(double paymentAmount) {
+        // Data validation step inside the setter framework
+        if (paymentAmount > 0) {
+            if (paymentAmount <= feeBalance) {
+                feeBalance -= paymentAmount;
+                cout << "\nTransaction Authorized: Account balance adjusted." << endl;
+            } else {
+                double excess = paymentAmount - feeBalance;
+                feeBalance = 0;
+                cout << "\nTransaction Warning: Overpayment made. Account cleared. Balance is 0." << endl;
+                cout << "Change Due: " << excess << endl;
+            }
+        } else {
+            cout << "\nTransaction Denied: Invalid transaction processing amount." << endl;
+        }
+    }
+
+    // Show student details and remaining balance
+    void displayStatus() {
+        cout << "\n--- Student Account Summary ---" << endl;
+        cout << "Admission No: " << admissionNumber << endl;
+        cout << "Student Name: " << studentName << endl;
+        cout << "Outstanding Fee Balance: " << feeBalance << endl;
+        cout << "-------------------------------" << endl;
+    }
+};
+
+// iv) Main function
+int main() {
+    cout << "=== Registrar Student Fee Security Module ===" << endl << endl;
+
+    // Create an object of the Student class
+    Student studentObj;
+
+    // Input student details
+    studentObj.inputStudentData();
+
+    // Display starting baseline status
+    studentObj.displayStatus();
+
+    // Process a fee payment securely
+    double payment;
+    cout << "\nEnter amount to be paid: ";
+    cin >> payment;
+    
+    // iii) Ensuring feeBalance can only change via authorized method boundary
+    studentObj.makePayment(payment);
+
+    // Display updated status
+    studentObj.displayStatus();
+
+    return 0;
+}

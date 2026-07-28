@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    // Open sales log file using standard C file pointers
+    FILE *filePointer = fopen("sales.txt", "r");
+    
+    if (filePointer == NULL) {
+        printf("Error: Could not open sales.txt. Ensure the file path is correct.\n");
+        return 1;
+    }
+    
+    double transactionAmount = 0.0;
+    double totalSales = 0.0;
+    
+    // i. Read all transactions line by line from the file
+    // fscanf returns EOF (End of File) when there are no more numbers left to parse
+    while (fscanf(filePointer, "%lf", &transactionAmount) != EOF) {
+        // ii. Calculate total sales
+        totalSales += transactionAmount;
+    }
+    
+    // ii. Display the final aggregated total for the day
+    printf("=== Small Retail Shop Daily Reconciliation ===\n");
+    printf("Total calculated sales for today: KSh %.2f\n", totalSales);
+    
+    // iii. Ensure the file is properly closed after reading
+    fclose(filePointer);
+    
+    return 0;
+}

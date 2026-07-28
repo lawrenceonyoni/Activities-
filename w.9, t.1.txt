@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a base class named Person
+class Person {
+protected: // protected allows derived classes to access these fields directly
+    string name;
+    int age;
+
+public:
+    // Helper function to input base attributes
+    void inputPerson() {
+        cout << "Enter Name: ";
+        cin >> ws; // Clear text buffer
+        getline(cin, name);
+        cout << "Enter Age: ";
+        cin >> age;
+    }
+
+    // ii) Member function in the base class to display name and age
+    void displayPerson() {
+        cout << "Name:             " << name << endl;
+        cout << "Age:              " << age << endl;
+    }
+};
+
+// iii) Create a derived class named Student that inherits from Person
+class Student : public Person {
+private:
+    string admissionNumber;
+    string studentClass;
+
+public:
+    // Input function combining base and derived logic
+    void inputStudentDetails() {
+        inputPerson(); // Call base class function
+        cout << "Enter Admission Number: ";
+        cin >> admissionNumber;
+        cout << "Enter Class: ";
+        cin >> ws;
+        getline(cin, studentClass);
+    }
+
+    // iv) Include a member function in the derived class
+    void displayStudent() {
+        cout << "\n--- Student Record Details ---" << endl;
+        displayPerson(); // Call ii) displayPerson() to show inherited details
+        cout << "Admission Number: " << admissionNumber << endl;
+        cout << "Class:            " << studentClass << endl;
+        cout << "------------------------------" << endl;
+    }
+};
+
+// v) In the main function
+int main() {
+    cout << "=== School Management System (Inheritance) ===" << endl;
+    
+    // Create an object of the Student class
+    Student currentStudent;
+
+    // Input all details
+    cout << "Input Details for Student:" << endl;
+    currentStudent.inputStudentDetails();
+
+    // Display all details
+    currentStudent.displayStudent();
+
+    return 0;
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+
+using namespace std;
+
+// i) Create a class named Payment
+class Payment {
+public:
+    // Overloaded function: Accepts an integer amount for cash payment
+    void processPayment(int amount) {
+        cout << "--- Cash Payment Processed ---" << endl;
+        cout << "Base Amount: " << amount << endl;
+        cout << "Final Payment: " << amount << endl << endl;
+    }
+
+    // Overloaded function: Accepts two parameters for card payment
+    void processPayment(double amount, double transactionFee) {
+        double finalAmount = amount + transactionFee;
+        cout << "--- Card Payment Processed ---" << endl;
+        cout << "Base Amount: " << amount << " | Fee: " << transactionFee << endl;
+        cout << "Final Payment: " << finalAmount << endl << endl;
+    }
+
+    // Overloaded function: Accepts three parameters for mobile payment
+    void processPayment(double amount, double fee, double discount) {
+        double finalAmount = (amount + fee) - discount;
+        cout << "--- Mobile Payment Processed ---" << endl;
+        cout << "Base Amount: " << amount << " | Fee: " << fee << " | Discount: " << discount << endl;
+        cout << "Final Payment: " << finalAmount << endl << endl;
+    }
+};
+
+// iii) Main function
+int main() {
+    cout << "=== Compile-time Polymorphism: Payment System ===" << endl << endl;
+    
+    // Create an object of the class
+    Payment paymentProcessor;
+
+    // Demonstrate all three types of payments
+    paymentProcessor.processPayment(1500);                     // Calls cash payment
+    paymentProcessor.processPayment(4500.0, 120.50);            // Calls card payment
+    paymentProcessor.processPayment(2300.0, 50.0, 150.0);       // Calls mobile payment
+
+    return 0;
+}

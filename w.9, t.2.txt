@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a base class named Vehicle
+class Vehicle {
+protected:
+    string brand;
+    int yearOfManufacture;
+
+public:
+    // Helper function to input vehicle fields
+    void inputVehicle() {
+        cout << "Enter Brand: ";
+        cin >> ws;
+        getline(cin, brand);
+        cout << "Enter Year of Manufacture: ";
+        cin >> yearOfManufacture;
+    }
+
+    // ii) Include a member function in the base class to display vehicle details
+    void displayVehicle() {
+        cout << "Brand:            " << brand << endl;
+        cout << "Year of Mfr:      " << yearOfManufacture << endl;
+    }
+};
+
+// iii) Create a derived class named Car that inherits from Vehicle
+class Car : public Vehicle {
+private:
+    int numberOfDoors;
+    double engineCapacity; // e.g., 1.5, 2.0 liters
+
+public:
+    // Input function combining base and car-specific logic
+    void inputCarDetails() {
+        inputVehicle(); // Call base class input
+        cout << "Enter Number of Doors: ";
+        cin >> numberOfDoors;
+        cout << "Enter Engine Capacity (Liters): ";
+        cin >> engineCapacity;
+    }
+
+    // iv) Include a member function in the derived class
+    void displayCar() {
+        cout << "\n--- Car Specifications Report ---" << endl;
+        displayVehicle(); // Call ii) displayVehicle() for inherited attributes
+        cout << "Number of Doors:  " << numberOfDoors << endl;
+        cout << "Engine Capacity:  " << engineCapacity << "L" << endl;
+        cout << "---------------------------------" << endl;
+    }
+};
+
+// v) In the main function
+int main() {
+    cout << "\n=== Transport Company Vehicle Registry ===" << endl;
+    
+    // Create an object of the Car class
+    Car companyCar;
+
+    // Input all details
+    cout << "Input Details for Car Registration:" << endl;
+    companyCar.inputCarDetails();
+
+    // Display all details
+    companyCar.displayCar();
+
+    return 0;
+}

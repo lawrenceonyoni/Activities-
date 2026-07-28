@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create a class named Employee
+class Employee {
+private:
+    // Private data members to ensure sensitive data protection
+    string employeeName;
+    string employeeID;
+    double basicSalary;
+
+public:
+    // ii) Public member functions
+    
+    // Input and assign values to the private data members
+    void setEmployeeDetails() {
+        cout << "Enter Employee Name: ";
+        cin >> ws; // Clear buffer
+        getline(cin, employeeName);
+        
+        cout << "Enter Employee ID: ";
+        cin >> employeeID;
+        
+        cout << "Enter Basic Salary: ";
+        cin >> basicSalary;
+    }
+
+    // Compute net salary after adding a 10% allowance
+    double calculateSalary() {
+        // Formula: Net Salary = Basic Salary + 0.10 * Basic Salary
+        return basicSalary + (0.10 * basicSalary);
+    }
+
+    // Display employee information and net salary
+    void displayEmployeeDetails() {
+        cout << "\n--- Secured Employee Record ---" << endl;
+        cout << "Employee ID:  " << employeeID << endl;
+        cout << "Name:         " << employeeName << endl;
+        cout << "Basic Salary: " << basicSalary << endl;
+        cout << "Net Salary (with 10% allowance): " << calculateSalary() << endl;
+        cout << "--------------------------------" << endl;
+    }
+};
+
+// iii) Main function
+int main() {
+    cout << "=== Secure Employee Payroll Desk ===" << endl << endl;
+
+    // Create an object of the class
+    Employee emp;
+
+    // Set employee details using the public entry point
+    emp.setEmployeeDetails();
+
+    // Display the employee details and derived net computations
+    emp.displayEmployeeDetails();
+
+    return 0;
+}

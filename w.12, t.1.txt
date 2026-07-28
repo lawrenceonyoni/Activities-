@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// i) Create an abstract class named MedicalStaff
+class MedicalStaff {
+protected:
+    // Protected attributes accessible by derived classes
+    string staffName;
+    string staffID;
+
+public:
+    // Constructor to initialize standard staff attributes
+    MedicalStaff(string name, string id) {
+        staffName = name;
+        staffID = id;
+    }
+
+    // ii) Include a pure virtual function (makes the class abstract)
+    virtual void calculateSalary() = 0;
+
+    // iii) Include a non-virtual function to display common details
+    void displayDetails() {
+        cout << "Staff ID:   " << staffID << endl;
+        cout << "Staff Name: " << staffName << endl;
+    }
+
+    // Virtual destructor for safe runtime deletion via base pointer
+    virtual ~MedicalStaff() {}
+};
+
+// iv) Create derived class: Doctor
+class Doctor : public MedicalStaff {
+private:
+    double basicSalary;
+    double allowance;
+
+public:
+    Doctor(string name, string id, double basic, double allow) 
+        : MedicalStaff(name, id) { // Forwarding data to base constructor
+        basicSalary = basic;
+        allowance = allow;
+    }
+
+    // Implement calculateSalary() specifically for a Doctor
+    void calculateSalary() override {
+        double finalSalary = basicSalary + allowance;
+        displayDetails(); // Call base non-virtual function
+        cout << "Role:       Doctor" << endl;
+        cout << "Net Salary: KSh " << finalSalary << endl;
+        cout << "-----------------------------------" << endl;
+    }
+};
+
+// iv) Create derived class: Nurse
+class Nurse : public MedicalStaff {
+private:
+    double basicSalary;
+    double overtimePay;
+
+public:
+    Nurse(string name, string id, double basic, double overtime) 
+        : MedicalStaff(name, id) {
+        basicSalary = basic;
+        overtimePay = overtime;
+    }
+
+    // Implement calculateSalary() specifically for a Nurse
+    void calculateSalary() override {
+        double finalSalary = basicSalary + overtimePay;
+        displayDetails(); // Call base non-virtual function
+        cout << "Role:       Nurse" << endl;
+        cout << "Net Salary: KSh " << finalSalary << endl;
+        cout << "-----------------------------------" << endl;
+    }
+};
+
+// v) In the main function
+int main() {
+    cout << "=== Hospital Medical Staff Payroll System ===" << endl << endl;
+
+    // Use a base class pointer
+    MedicalStaff* staffPtr = nullptr;
+
+    // Create objects of both derived classes
+    Doctor doc("Dr. Mwangi", "DOC-004", 450000.0, 75000.0);
+    Nurse nurse("Sister Amina", "NRS-112", 120000.0, 25000.0);
+
+    // Demonstrate runtime behavior using abstraction via base pointer
+    staffPtr = &doc;
+    staffPtr->calculateSalary();
+
+    staffPtr = &nurse;
+    staffPtr->calculateSalary();
+
+    return 0;
+}
